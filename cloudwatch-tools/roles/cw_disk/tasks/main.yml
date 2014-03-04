@@ -1,6 +1,6 @@
 ---
 - name: Install CloudWatch Disk Usage Script
-  copy: src=cw-disk-usage dest=/usr/local/bin/cw-disk-usage
+  copy: src=cw-disk-usage dest=/usr/local/bin/cw-disk-usage mode=755 owner=root group=root
 
 - name: Setup CloudWatch Disk Usage Cron 
   copy: src=cloudwatch-disk.cron dest=/etc/cron.d/cloudwatch-disk
