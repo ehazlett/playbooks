@@ -1,0 +1,6 @@
+---
+- name: Install CloudWatch Memory Usage Script
+  copy: src=cw-memory-usage dest=/usr/local/bin/cw-memory-usage
+
+- name: Setup CloudWatch Memory Usage Cron 
+  copy: src=cloudwatch-memory.cron dest=/etc/cron.d/cloudwatch-memory

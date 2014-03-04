@@ -1,0 +1,2 @@
+[all]
+10.211.55.11 ansible_ssh_user=ubuntu

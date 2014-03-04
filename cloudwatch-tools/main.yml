@@ -1,0 +1,9 @@
+---
+- name: Installs and configures CloudWatch Tools
+  hosts: all
+  sudo: true
+  
+  roles:
+    - common
+    - cw_disk
+    - cw_memory

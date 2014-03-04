@@ -1,0 +1,3 @@
+---
+- name: Setup Boto Config
+  template: src=boto.cfg.j2 dest=/etc/boto.cfg mode=600 owner=root group=root
