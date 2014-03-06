@@ -1,0 +1,5 @@
+- name: Installs and configures Docker
+  hosts: docker
+  sudo: true
+  roles:
+    - docker
