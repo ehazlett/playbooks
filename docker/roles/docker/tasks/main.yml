@@ -1,4 +1,7 @@
 ---
+- name: Install PyCurl
+  apt: pkg=python-pycurl state=present update_cache=yes cache_valid_time=300
+
 - name: Copy Docker APT repo public key
   copy: src=docker.asc dest=/etc/docker.asc
       
