@@ -3,4 +3,4 @@
   copy: src=cw-memory-usage dest=/usr/local/bin/cw-memory-usage mode=755 owner=root group=root
 
 - name: Setup CloudWatch Memory Usage Cron 
-  copy: src=cloudwatch-memory.cron dest=/etc/cron.d/cloudwatch-memory
+  copy: src=cloudwatch-memory.cron dest=/etc/cron.d/cloudwatch-memory mode=755 owner=root group=root
