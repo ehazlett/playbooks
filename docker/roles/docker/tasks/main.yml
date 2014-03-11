@@ -13,9 +13,11 @@
 
 - name: Install Raring Kernel
   apt: pkg=linux-image-generic-lts-raring state=present update_cache=yes cache_valid_time=300
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
       
 - name: Install Raring Kernel Headers
   apt: pkg=linux-headers-generic-lts-raring state=present update_cache=yes cache_valid_time=300
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
 
 - name: Install Docker
   apt: pkg=lxc-docker state=latest update_cache=yes
