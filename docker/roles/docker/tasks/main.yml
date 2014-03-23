@@ -11,12 +11,12 @@
 - name: Docker APT Config
   apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
 
-- name: Install Raring Kernel
-  apt: pkg=linux-image-generic-lts-raring state=present update_cache=yes cache_valid_time=300
+- name: Install Saucy Kernel
+  apt: pkg=linux-image-generic-lts-saucy state=present update_cache=yes cache_valid_time=300
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
       
-- name: Install Raring Kernel Headers
-  apt: pkg=linux-headers-generic-lts-raring state=present update_cache=yes cache_valid_time=300
+- name: Install Saucy Kernel Headers
+  apt: pkg=linux-headers-generic-lts-saucy state=present update_cache=yes cache_valid_time=300
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
 
 - name: Install Docker
