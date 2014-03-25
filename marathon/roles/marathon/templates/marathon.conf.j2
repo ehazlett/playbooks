@@ -1,0 +1,4 @@
+description "marathon"
+start on stopped rc RUNLEVEL=[2345]
+respawn
+exec /opt/marathon/bin/start --master zk://{{ zk_mesos }} --zk_hosts {{ zk_hosts }}

@@ -1,0 +1,7 @@
+- name: Installs Apache Mesos
+  sudo: true
+  hosts: all
+  roles:
+    - mesos
+  vars:
+      zk_mesos: localhost:2181/mesos

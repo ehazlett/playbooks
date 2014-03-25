@@ -1,0 +1,8 @@
+- name: Installs Mesosphere Marathon
+  sudo: true
+  hosts: all
+  roles:
+    - marathon
+  vars:
+    zk_mesos: localhost:2181/mesos
+    zk_hosts: localhost:2181

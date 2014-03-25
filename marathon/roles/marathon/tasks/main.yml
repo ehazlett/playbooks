@@ -1,0 +1,16 @@
+---
+- name: Install Java
+  apt: pkg=default-jre state=present update_cache=yes cache_valid_time=300
+
+- name: Install Curl
+  apt: pkg=curl state=present update_cache=yes cache_valid_time=300
+
+- name: Get Marathon
+  action: command curl -sSfL "http://downloads.mesosphere.io/marathon/marathon-0.4.1.tgz" --output marathon.tar.gz chdir=/tmp creates=/opt/marathon
+
+- name: Install Marathon
+  action: command tar zxf /tmp/marathon.tar.gz creates=/opt/marathon chdir=/opt
+
+- name: Install Marathon Upstart Config
+  template: src=marathon.conf.j2 dest=/etc/init/marathon.conf owner=root mode=0644
+  notify: Restart Marathon

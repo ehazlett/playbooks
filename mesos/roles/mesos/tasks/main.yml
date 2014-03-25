@@ -1,0 +1,33 @@
+---
+- name: Install Zookeeper
+  apt: pkg=zookeeperd state=present update_cache=yes cache_valid_time=300
+
+- name: Install Java
+  apt: pkg=default-jre state=present update_cache=yes cache_valid_time=300
+
+- name: Install Setuptools
+  apt: pkg=python-setuptools state=present update_cache=yes cache_valid_time=300
+
+- name: Install PythonProtobof
+  apt: pkg=python-protobuf state=present update_cache=yes cache_valid_time=300
+
+- name: Install Curl
+  apt: pkg=curl state=present update_cache=yes cache_valid_time=300
+
+- name: Get Mesos
+  action: command curl -sSfL "http://downloads.mesosphere.io/master/ubuntu/{{ ansible_distribution_version }}/mesos_0.17.0_amd64.deb" --output mesos.deb chdir=/tmp creates=/etc/init/mesos-master.conf
+
+- name: Install Mesos
+  action: command dpkg -i mesos.deb creates=/etc/init/mesos-master.conf chdir=/tmp
+
+- name: Get Mesos egg
+  action: command curl -sSfL "http://downloads.mesosphere.io/master/ubuntu/{{ ansible_distribution_version }}/mesos_0.17.0_amd64.egg" --output mesos.egg chdir=/tmp creates=/etc/init/mesos-master.conf
+
+- name: Install Mesos egg
+  action: command easy_install mesos.egg creates=/etc/init/mesos-master.conf chdir=/tmp
+
+- name: Install Mesos Config
+  template: src=zk.j2 dest=/etc/mesos/zk owner=root mode=0644
+  notify:
+    - Restart Mesos Master
+    - Restart Mesos Slave
