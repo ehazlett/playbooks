@@ -5,3 +5,9 @@
     - mesos
   vars:
       zk_mesos: localhost:2181/mesos
+      master_attributes:
+        - { name: zone, value: default }
+        - { name: region, value: default }
+      slave_attributes:
+        - { name: zone, value: default }
+        - { name: region, value: default }

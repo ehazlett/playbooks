@@ -31,3 +31,22 @@
   notify:
     - Restart Mesos Master
     - Restart Mesos Slave
+
+- name: Mesos Master Attribute Directory
+  action: file path=/etc/mesos-master/attributes owner=root group=root mode=0755 state=directory
+
+- name: Mesos Slave Attribute Directory
+  action: file path=/etc/mesos-slave/attributes owner=root group=root mode=0755 state=directory
+
+- name: Mesos Master Attributes
+  template: src=attribute.j2 dest=/etc/mesos-master/attributes/{{ item.name }} owner=root group=root mode=0644
+  with_items: master_attributes
+  notify:
+    - Restart Mesos Slave
+
+- name: Mesos Slave Attributes
+  template: src=attribute.j2 dest=/etc/mesos-slave/attributes/{{ item.name }} owner=root group=root mode=0644
+  with_items: slave_attributes
+  notify:
+    - Restart Mesos Slave
+
